@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BrainCircuit } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { findStock } from "@/lib/constants";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AdvancedChart from "@/components/widgets/AdvancedChart";
@@ -9,6 +9,7 @@ import Financials from "@/components/widgets/Financials";
 import CompanyProfile from "@/components/widgets/CompanyProfile";
 import NewsTimeline from "@/components/widgets/NewsTimeline";
 import WatchlistButton from "@/components/stocks/WatchlistButton";
+import ForecastCard from "@/components/forecast/ForecastCard";
 
 type Params = { params: Promise<{ symbol: string }> };
 
@@ -64,26 +65,9 @@ export default async function StockPage({ params }: Params) {
         </Card>
       </section>
 
-      {/* Forecast teaser (wired in Phase 5) */}
+      {/* AI forecast (LSTM) */}
       <section className="mt-6">
-        <Card className="overflow-hidden border-primary/30">
-          <CardContent className="flex flex-wrap items-center justify-between gap-4 p-6">
-            <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <BrainCircuit className="h-6 w-6" />
-              </span>
-              <div>
-                <h3 className="font-semibold">AI price forecast</h3>
-                <p className="text-sm text-muted-foreground">
-                  An LSTM projection for {stock.name} appears here in Phase 5.
-                </p>
-              </div>
-            </div>
-            <span className="rounded-full border border-dashed border-border px-3 py-1 text-xs text-muted-foreground">
-              Coming in Phase 5
-            </span>
-          </CardContent>
-        </Card>
+        <ForecastCard symbol={stock.yf} />
       </section>
 
       {/* Financials + Profile */}
