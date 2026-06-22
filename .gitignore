@@ -1,0 +1,42 @@
+# ---- Secrets / env ----
+.env
+.env.*
+!.env.example
+*.local
+
+# ---- Node / Next.js (web/) ----
+node_modules/
+.next/
+out/
+build/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Python (prediction-service/) ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- ML artifacts & data caches ----
+prediction-service/models/saved/*
+!prediction-service/models/saved/.gitkeep
+prediction-service/data/raw/*
+!prediction-service/data/raw/.gitkeep
+prediction-service/data/processed/*
+!prediction-service/data/processed/.gitkeep
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
