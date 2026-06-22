@@ -40,24 +40,25 @@ Stocksage-lstm/
 
 ## 🗺️ Roadmap (built in phases)
 
-- [ ] **Phase 0** — Project setup & accounts guide  ← *you are here*
-- [ ] **Phase 1** — Python LSTM prediction service (NIFTY 50)
-- [ ] **Phase 2** — Design system, animated landing page & dashboard
-- [ ] **Phase 3** — Google one-click sign-in + demo login
-- [ ] **Phase 4** — Search, stock detail + news, watchlist, portfolio
-- [ ] **Phase 5** — Wire LSTM forecasts into stock pages
-- [ ] **Phase 6** — AI insights, news summaries & chatbot
-- [ ] **Phase 7** — Price/volume alerts + daily & weekly email reports
-- [ ] **Phase 8** — Deploy live (Vercel + Python host)
+- [x] **Phase 0** — Project setup & accounts guide
+- [x] **Phase 1** — Python LSTM prediction service (NIFTY 50)
+- [x] **Phase 2** — Design system, animated landing page & dashboard
+- [x] **Phase 3** — Google one-click sign-in + demo login
+- [x] **Phase 4** — Search, stock detail + news, watchlist, portfolio
+- [x] **Phase 5** — Wire LSTM forecasts into stock pages
+- [x] **Phase 6** — AI insights, news summaries & chatbot
+- [x] **Phase 7** — Price/volume alerts + daily & weekly email reports
+- [x] **Phase 8** — Deploy live (Vercel + Python host)
 
-Each phase ships as its own **branch + pull request** for review.
+Each phase shipped as its own **branch + pull request**. 🎉 All phases complete.
 
 ## 🚀 Getting started
 
 1. Read **[SETUP.md](./SETUP.md)** to create the free accounts & API keys you'll need.
-2. Each part has its own README with run instructions (added as phases land):
-   - `web/README.md` — the website
-   - `prediction-service/README.md` — the LSTM API
+2. Run each part locally (see its README):
+   - `prediction-service/README.md` — train a model & start the LSTM API
+   - `web/README.md` — start the website (`npm install && npm run dev`)
+3. Go live with **[DEPLOY.md](./DEPLOY.md)** — Vercel (website) + Render (prediction API).
 
 ## 📜 License
 
