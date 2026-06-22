@@ -56,7 +56,12 @@ export default function WatchlistPage() {
                   </Button>
                 </CardHeader>
                 <CardContent className="px-2 pb-3">
-                  <MiniSymbolOverview symbol={stock.tv} height={130} />
+                  <Link href={`/stock/${encodeURIComponent(sym)}`} className="block">
+                    {/* visual only — click opens the detail page, not TradingView */}
+                    <div className="pointer-events-none">
+                      <MiniSymbolOverview symbol={stock.tv} height={130} />
+                    </div>
+                  </Link>
                 </CardContent>
               </Card>
             );

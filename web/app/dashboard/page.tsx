@@ -38,7 +38,7 @@ export default function DashboardPage() {
               Your market dashboard
             </h1>
             <p className="mt-1 text-muted-foreground">
-              Live NIFTY 50 charts and market snapshots. Sign-in, search and forecasts come online in the next phases.
+              Live NIFTY 50 charts, your watchlist and portfolio, and AI-powered forecasts — all in one place.
             </p>
           </div>
         </div>
@@ -59,25 +59,30 @@ export default function DashboardPage() {
       {/* Featured stocks */}
       <section className="mt-14">
         <Reveal>
-          <SectionHeading eyebrow="Popular stocks" title="Featured companies" subtitle="A snapshot of the most-watched names. Full detail pages arrive in Phase 4." />
+          <SectionHeading eyebrow="Popular stocks" title="Featured companies" subtitle="A snapshot of the most-watched names — tap any one to open its full page." />
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURED.map((stock, i) => (
             <Reveal key={stock.yf} delay={(i % 4) * 0.06}>
-              <Card className="h-full overflow-hidden">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-base">{stock.name}</CardTitle>
-                    <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">
-                      {stock.sector}
-                    </span>
-                  </div>
-                  <CardDescription className="text-xs">{stock.tv}</CardDescription>
-                </CardHeader>
-                <CardContent className="px-2 pb-3">
-                  <MiniSymbolOverview symbol={stock.tv} height={140} />
-                </CardContent>
-              </Card>
+              <Link href={`/stock/${encodeURIComponent(stock.yf)}`} className="block h-full">
+                <Card className="h-full overflow-hidden transition-shadow hover:shadow-[0_16px_40px_-24px_rgba(0,0,0,0.3)]">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-base">{stock.name}</CardTitle>
+                      <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">
+                        {stock.sector}
+                      </span>
+                    </div>
+                    <CardDescription className="text-xs">{stock.tv}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="px-2 pb-3">
+                    {/* visual only — the whole card links to the detail page */}
+                    <div className="pointer-events-none">
+                      <MiniSymbolOverview symbol={stock.tv} height={140} />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -105,16 +110,16 @@ export default function DashboardPage() {
                   <BrainCircuit className="h-6 w-6" />
                 </span>
                 <h3 className="mt-5 text-2xl font-semibold tracking-tightest">
-                  LSTM forecasts, coming to every stock
+                  LSTM forecasts on every stock
                 </h3>
                 <p className="mt-3 text-muted-foreground">
-                  Our prediction engine — trained on a decade of NIFTY 50 data — is already built.
-                  In Phase 5 it plugs into each stock page with a multi-day forecast and a confidence band.
+                  Our prediction engine, trained on a decade of NIFTY 50 data, projects a multi-day
+                  forecast with a confidence band right on each stock&apos;s page.
                 </p>
                 <div className="mt-6">
                   <Button asChild variant="outline">
-                    <Link href="/#features">
-                      Learn more <ArrowRight className="h-4 w-4" />
+                    <Link href="/stocks">
+                      Browse stocks <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -127,7 +132,7 @@ export default function DashboardPage() {
                   <div className="mt-2 text-5xl font-semibold tracking-tightest text-foreground">+4.5%</div>
                   <div className="text-sm text-muted-foreground">projected 30-day move</div>
                   <div className="mt-4 inline-block rounded-lg border border-dashed border-border px-4 py-2 text-xs text-muted-foreground">
-                    Live forecast chart lands in Phase 5
+                    Open any stock to see its live forecast
                   </div>
                 </div>
               </div>
