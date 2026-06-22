@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, LogOut, Star, Wallet } from "lucide-react";
+import { LayoutDashboard, LogOut, Star, Wallet, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession, signOut } from "@/lib/auth-client";
 
@@ -51,6 +51,11 @@ export default function UserMenu() {
       <Button asChild variant="ghost" size="icon" className="hidden md:inline-flex" aria-label="Portfolio">
         <Link href="/portfolio">
           <Wallet className="h-4 w-4" />
+        </Link>
+      </Button>
+      <Button asChild variant="ghost" size="icon" className="hidden md:inline-flex" aria-label="Alerts">
+        <Link href="/alerts">
+          <Bell className="h-4 w-4" />
         </Link>
       </Button>
       <span

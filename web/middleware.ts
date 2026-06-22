@@ -27,5 +27,7 @@ export const config = {
     "/watchlist/:path*",
     "/portfolio",
     "/portfolio/:path*",
+    "/alerts",
+    "/alerts/:path*",
   ],
 };
