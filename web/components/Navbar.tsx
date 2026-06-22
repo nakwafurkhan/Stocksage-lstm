@@ -2,9 +2,9 @@ import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
 
 const LINKS = [
-  { label: "Features", href: "/#features" },
-  { label: "How it works", href: "/#how" },
+  { label: "Stocks", href: "/stocks" },
   { label: "Dashboard", href: "/dashboard" },
+  { label: "Features", href: "/#features" },
 ];
 
 export default function Navbar() {

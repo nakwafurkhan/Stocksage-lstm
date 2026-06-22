@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { LayoutDashboard, LogOut, Star, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession, signOut } from "@/lib/auth-client";
 
@@ -38,9 +38,19 @@ export default function UserMenu() {
 
   return (
     <div className="flex items-center gap-2">
-      <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+      <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
         <Link href="/dashboard">
           <LayoutDashboard className="h-4 w-4" /> Dashboard
+        </Link>
+      </Button>
+      <Button asChild variant="ghost" size="icon" className="hidden md:inline-flex" aria-label="Watchlist">
+        <Link href="/watchlist">
+          <Star className="h-4 w-4" />
+        </Link>
+      </Button>
+      <Button asChild variant="ghost" size="icon" className="hidden md:inline-flex" aria-label="Portfolio">
+        <Link href="/portfolio">
+          <Wallet className="h-4 w-4" />
         </Link>
       </Button>
       <span
