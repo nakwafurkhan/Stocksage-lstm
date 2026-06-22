@@ -31,7 +31,7 @@ Stocksage-lstm/
 ├── web/                 # Next.js 15 website (the app users see)
 │   • TypeScript, Tailwind, shadcn/ui, Framer Motion
 │   • Better Auth (Google sign-in) + MongoDB
-│   • TradingView charts • Gemini AI • Inngest + Resend email
+│   • TradingView charts • Groq AI • Inngest + Resend email
 │
 └── prediction-service/  # Python LSTM API (the "prediction brain")
     • PyTorch LSTM trained on ~10 years of NIFTY 50 data

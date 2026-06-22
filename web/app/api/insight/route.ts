@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findStock } from "@/lib/constants";
 import { fetchQuote } from "@/lib/quote";
-import { geminiGenerate, GeminiNotConfigured } from "@/lib/gemini";
+import { llmGenerate, LlmNotConfigured } from "@/lib/llm";
 
 const SYSTEM =
   "You are StockSage, a friendly guide who explains the Indian stock market to complete beginners. Use plain English and explain any term simply. Be concise, balanced and encouraging. Never give financial advice or tell anyone to buy or sell.";
@@ -29,12 +29,12 @@ Write three short paragraphs:
 Finish with one sentence reminding the reader this is educational information, not financial advice.`;
 
   try {
-    const text = await geminiGenerate({ system: SYSTEM, prompt, maxTokens: 520 });
+    const text = await llmGenerate({ system: SYSTEM, prompt, maxTokens: 520 });
     return NextResponse.json({ text });
   } catch (e) {
-    if (e instanceof GeminiNotConfigured) {
+    if (e instanceof LlmNotConfigured) {
       return NextResponse.json(
-        { error: "AI is not configured. Add GEMINI_API_KEY in web/.env.local." },
+        { error: "AI is not configured. Add GROQ_API_KEY in web/.env.local." },
         { status: 503 }
       );
     }

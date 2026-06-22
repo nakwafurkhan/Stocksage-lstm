@@ -14,7 +14,7 @@ live TradingView charts.
 - **TradingView** embeddable widgets (charts, ticker, market overview)
 - **lucide-react** icons
 
-*(Coming in later phases: Better Auth + Google sign-in, MongoDB, Gemini AI,
+*(Coming in later phases: Better Auth + Google sign-in, MongoDB, Groq AI,
 Inngest + Resend email.)*
 
 ## What's in this phase (Phase 2)
