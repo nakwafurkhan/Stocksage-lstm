@@ -3,6 +3,7 @@ import { TrendingUp, BrainCircuit, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Reveal from "@/components/motion/Reveal";
+import OnboardingBanner from "@/components/OnboardingBanner";
 import AdvancedChart from "@/components/widgets/AdvancedChart";
 import MiniSymbolOverview from "@/components/widgets/MiniSymbolOverview";
 import MarketOverview from "@/components/widgets/MarketOverview";
@@ -25,6 +26,7 @@ function SectionHeading({ eyebrow, title, subtitle }: { eyebrow: string; title: 
 export default function DashboardPage() {
   return (
     <div className="container py-10">
+      <OnboardingBanner />
       {/* Header */}
       <Reveal>
         <div className="flex flex-wrap items-end justify-between gap-3">
