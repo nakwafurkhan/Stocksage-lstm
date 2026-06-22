@@ -24,7 +24,7 @@ export default function Reveal({ children, delay = 0, y = 24, className }: Props
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.6, delay, ease: "easeOut" },
     },
   };
 
