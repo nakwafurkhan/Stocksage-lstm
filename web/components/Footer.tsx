@@ -21,12 +21,14 @@ export default function Footer() {
             © {new Date().getFullYear()} StockSage · Charts &amp; data by
             TradingView · NIFTY 50 (NSE), regulated by SEBI
           </p>
-          <Link
-            href="/dashboard"
-            className="text-foreground/70 transition-colors hover:text-foreground"
-          >
-            Open dashboard →
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/glossary" className="text-foreground/70 transition-colors hover:text-foreground">
+              Glossary
+            </Link>
+            <Link href="/dashboard" className="text-foreground/70 transition-colors hover:text-foreground">
+              Dashboard →
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

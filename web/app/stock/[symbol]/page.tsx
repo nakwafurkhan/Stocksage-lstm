@@ -10,6 +10,7 @@ import CompanyProfile from "@/components/widgets/CompanyProfile";
 import NewsTimeline from "@/components/widgets/NewsTimeline";
 import WatchlistButton from "@/components/stocks/WatchlistButton";
 import ForecastCard from "@/components/forecast/ForecastCard";
+import AiPanel from "@/components/insight/AiPanel";
 
 type Params = { params: Promise<{ symbol: string }> };
 
@@ -70,6 +71,17 @@ export default async function StockPage({ params }: Params) {
         <ForecastCard symbol={stock.yf} />
       </section>
 
+      {/* AI insight */}
+      <section className="mt-6">
+        <AiPanel
+          symbol={stock.yf}
+          endpoint="/api/insight"
+          title="AI insight"
+          description={`Get a plain-English explanation of ${stock.name} — what it does and what a beginner should keep in mind.`}
+          cta="Explain this stock"
+        />
+      </section>
+
       {/* Financials + Profile */}
       <section className="mt-6 grid gap-6 lg:grid-cols-2">
         <Card className="overflow-hidden">
@@ -88,6 +100,17 @@ export default async function StockPage({ params }: Params) {
             <CompanyProfile symbol={stock.tv} />
           </CardContent>
         </Card>
+      </section>
+
+      {/* AI news summary */}
+      <section className="mt-6">
+        <AiPanel
+          symbol={stock.yf}
+          endpoint="/api/news-summary"
+          title="News summary"
+          description={`Get an AI summary of recent news and developments about ${stock.name}.`}
+          cta="Summarize recent news"
+        />
       </section>
 
       {/* News */}
