@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import UserMenu from "@/components/auth/UserMenu";
 
 const LINKS = [
   { label: "Features", href: "/#features" },
@@ -29,15 +29,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* Wired in Phase 3 */}
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link href="/dashboard">Sign in</Link>
-          </Button>
-          <Button asChild size="sm">
-            <Link href="/dashboard">Try the demo</Link>
-          </Button>
-        </div>
+        <UserMenu />
       </nav>
     </header>
   );
