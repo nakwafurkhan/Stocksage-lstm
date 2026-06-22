@@ -1,0 +1,16 @@
+# Render Blueprint for the StockSage prediction API.
+# Render → New → Blueprint → pick this repo → Apply.
+services:
+  - type: web
+    name: stocksage-prediction
+    runtime: python
+    rootDir: prediction-service
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # Set this to your Vercel URL after the website deploys.
+      - key: ALLOWED_ORIGINS
+        value: "http://localhost:3000"
