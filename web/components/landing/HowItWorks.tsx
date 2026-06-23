@@ -6,7 +6,7 @@ const STEPS = [
     icon: LogIn,
     step: "01",
     title: "Sign in or try the demo",
-    body: "One click with Google — or jump straight into the demo account, no signup needed.",
+    body: "Sign up with your email — or jump straight into the demo account, no signup needed.",
   },
   {
     icon: Search,

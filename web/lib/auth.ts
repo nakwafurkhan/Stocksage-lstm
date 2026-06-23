@@ -5,22 +5,15 @@ import { db } from "./mongodb";
 /**
  * Better Auth server instance.
  *
+ * Email + password auth, with users stored in MongoDB via the adapter.
  * Reads BETTER_AUTH_SECRET and BETTER_AUTH_URL from the environment.
- * - Google one-click sign-in via the social provider.
- * - Email/password is enabled so the shared "demo" account can sign in.
- *
- * See ../../SETUP.md for how to create the Google OAuth client + MongoDB URI.
+ * See ../../SETUP.md for the MongoDB URI setup (no third-party OAuth needed).
  */
 export const auth = betterAuth({
   database: mongodbAdapter(db),
   emailAndPassword: {
     enabled: true,
-  },
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    },
+    minPasswordLength: 8,
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days

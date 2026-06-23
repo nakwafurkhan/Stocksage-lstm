@@ -37,7 +37,7 @@ cd Stocksage-lstm
 |---|---|---|---|---|
 | 1 | **GitHub** | Stores the code (you have it ✅) | now | Free |
 | 2 | **MongoDB Atlas** | User accounts, watchlist, portfolio | Phase 3 | Free (M0) |
-| 3 | **Google Cloud OAuth** | "Sign in with Google" | Phase 3 | Free |
+| 3 | **Auth secret** | Signs login sessions — just a random string, no account | login | Free |
 | 4 | **Groq** | AI insights, news summaries, chatbot | Phase 6 | Free |
 | 5 | **Resend** | Sends alert & report emails | Phase 7 | Free tier |
 | 6 | **Vercel** | Hosts the website (live URL) | Phase 8 | Free (Hobby) |
@@ -58,17 +58,13 @@ You can set them up as we reach each phase — no rush.
    `mongodb+srv://user:pass@cluster.xxxx.mongodb.net/stocksage`).
    → this becomes `MONGODB_URI`.
 
-### 3 · Google Cloud OAuth (one-click sign-in)
-1. Go to https://console.cloud.google.com → create a project (e.g. "StockSage").
-2. **APIs & Services → OAuth consent screen** → External → fill app name, your
-   email → add yourself as a **test user**.
-3. **APIs & Services → Credentials → Create Credentials → OAuth client ID**.
-4. Application type: **Web application**.
-5. **Authorized redirect URIs** — add both:
-   - `http://localhost:3000/api/auth/callback/google`
-   - `https://YOUR-APP.vercel.app/api/auth/callback/google` (add after deploy)
-6. Copy the **Client ID** and **Client secret**.
-   → these become `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+### 3 · Auth secret (no account needed)
+Login uses **email + password**, with users stored in your MongoDB — so there's
+no third-party OAuth to set up. You just need one random secret to sign sessions:
+```bash
+openssl rand -base64 32
+```
+Put the output in `BETTER_AUTH_SECRET`.
 
 ### 4 · Groq (AI)
 1. Sign up at https://console.groq.com
@@ -99,11 +95,9 @@ The website (`web/.env.local`):
 # Database
 MONGODB_URI=
 
-# Auth (Better Auth + Google)
+# Auth (Better Auth — email + password)
 BETTER_AUTH_SECRET=        # any long random string
 BETTER_AUTH_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
 
 # AI
 GROQ_API_KEY=
@@ -129,5 +123,5 @@ PORT=8000
 ## 5. What's next
 
 Phase 1 adds the **LSTM prediction service**. You don't need any of the keys
-above to run it — only Python. We'll guide MongoDB and Google setup when we
+above to run it — only Python. We'll guide MongoDB setup when we
 reach Phase 3. ✅

@@ -63,7 +63,7 @@ def tickers():
 @app.get("/history/{ticker}")
 def history_endpoint(
     ticker: str,
-    days: int = Query(180, ge=20, le=2500),
+    days: int = Query(180, ge=2, le=2500),
 ):
     """Daily OHLC candles for charting (works for any Yahoo symbol, incl. ^NSEI)."""
     ticker = ticker.upper()
