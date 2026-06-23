@@ -12,9 +12,9 @@
 
 ## ✨ What you can do
 
-- 🔐 **Sign in with one click** (Google) — or try the **demo account**, no signup needed
-- 📊 **Live, professional charts** for every NIFTY 50 stock (TradingView)
-- 🔎 **Search** the NIFTY 50 and open rich **stock detail pages** (chart + news + financials)
+- 🔐 **Sign in with email & password** — or try the **demo account**, no signup needed
+- 📊 **Interactive candlestick charts** for every NIFTY 50 stock (drawn from our own data)
+- 🔎 **Search** the NIFTY 50 and open rich **stock detail pages** (chart, AI news summary, forecast)
 - ⭐ **Watchlist** your favourite stocks
 - 💼 **Portfolio tracker** — record holdings and see live value & gain/loss
 - 🤖 **AI chatbot** that explains the market in plain English
@@ -30,8 +30,8 @@ A monorepo with two parts that talk over a simple API:
 Stocksage-lstm/
 ├── web/                 # Next.js 15 website (the app users see)
 │   • TypeScript, Tailwind, shadcn/ui, Framer Motion
-│   • Better Auth (Google sign-in) + MongoDB
-│   • TradingView charts • Groq AI • Inngest + Resend email
+│   • Better Auth (email + password) + MongoDB
+│   • Own-data SVG charts • Groq AI • Inngest + Resend email
 │
 └── prediction-service/  # Python LSTM API (the "prediction brain")
     • PyTorch LSTM trained on ~10 years of NIFTY 50 data
@@ -43,7 +43,7 @@ Stocksage-lstm/
 - [x] **Phase 0** — Project setup & accounts guide
 - [x] **Phase 1** — Python LSTM prediction service (NIFTY 50)
 - [x] **Phase 2** — Design system, animated landing page & dashboard
-- [x] **Phase 3** — Google one-click sign-in + demo login
+- [x] **Phase 3** — Email & password sign-in + demo login
 - [x] **Phase 4** — Search, stock detail + news, watchlist, portfolio
 - [x] **Phase 5** — Wire LSTM forecasts into stock pages
 - [x] **Phase 6** — AI insights, news summaries & chatbot

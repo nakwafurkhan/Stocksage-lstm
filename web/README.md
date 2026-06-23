@@ -14,7 +14,7 @@ live TradingView charts.
 - **TradingView** embeddable widgets (charts, ticker, market overview)
 - **lucide-react** icons
 
-*(Coming in later phases: Better Auth + Google sign-in, MongoDB, Groq AI,
+*(Later phases add: Better Auth email + password, MongoDB, Groq AI,
 Inngest + Resend email.)*
 
 ## What's in this phase (Phase 2)
@@ -63,7 +63,7 @@ web/
 
 ## Next phases
 
-- **Phase 3** — Google one-click sign-in + demo login
+- **Phase 3** — Email & password sign-in + demo login
 - **Phase 4** — search, stock detail + news, watchlist, portfolio
 - **Phase 5** — wire LSTM forecast charts into stock pages
 - **Phase 6** — AI insights, news summaries & chatbot

@@ -61,7 +61,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p variants={item} className="mt-4 text-xs text-muted-foreground">
-            Free · Google one-click sign-in · No signup needed for the demo
+            Free · Email sign-in · No signup needed for the demo
           </motion.p>
         </motion.div>
 
