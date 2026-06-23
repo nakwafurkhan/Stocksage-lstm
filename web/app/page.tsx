@@ -3,7 +3,7 @@ import Features from "@/components/landing/Features";
 import HowItWorks from "@/components/landing/HowItWorks";
 import CTA from "@/components/landing/CTA";
 import Reveal from "@/components/motion/Reveal";
-import TickerTape from "@/components/widgets/TickerTape";
+import QuoteTape from "@/components/charts/QuoteTape";
 
 const STATS = [
   { k: "50", v: "NIFTY stocks" },
@@ -17,9 +17,9 @@ export default function LandingPage() {
     <>
       <Hero />
 
-      {/* Live ticker strip */}
+      {/* Quote strip (our own data) */}
       <div className="border-y border-border">
-        <TickerTape />
+        <QuoteTape />
       </div>
 
       {/* Stats band */}

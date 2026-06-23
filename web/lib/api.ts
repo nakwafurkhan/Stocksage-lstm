@@ -40,6 +40,30 @@ export async function getForecast(
   return res.json();
 }
 
+export type Candle = {
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+};
+
+/** Fetch daily OHLC candles for charting (any Yahoo symbol, incl. ^NSEI). */
+export async function getHistory(
+  yfSymbol: string,
+  days = 180
+): Promise<{ ticker: string; count: number; candles: Candle[] }> {
+  const res = await fetch(
+    `${BASE}/history/${encodeURIComponent(yfSymbol)}?days=${days}`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) {
+    const detail = await res.json().catch(() => ({}));
+    throw new Error(detail.detail || `History API error ${res.status}`);
+  }
+  return res.json();
+}
+
 /** List which tickers have trained models available. */
 export async function getTickers() {
   const res = await fetch(`${BASE}/tickers`, { cache: "no-store" });

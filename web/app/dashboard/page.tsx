@@ -4,11 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import Reveal from "@/components/motion/Reveal";
 import OnboardingBanner from "@/components/OnboardingBanner";
-import AdvancedChart from "@/components/widgets/AdvancedChart";
-import MiniSymbolOverview from "@/components/widgets/MiniSymbolOverview";
-import MarketOverview from "@/components/widgets/MarketOverview";
+import StockChart from "@/components/charts/StockChart";
+import MiniChart from "@/components/charts/MiniChart";
 import ExpandableWidget from "@/components/ExpandableWidget";
-import { FEATURED, NIFTY_INDEX_TV } from "@/lib/constants";
+import { FEATURED, NIFTY_50, NIFTY_INDEX_YF } from "@/lib/constants";
 
 export const metadata = {
   title: "Dashboard — StockSage",
@@ -48,12 +47,12 @@ export default function DashboardPage() {
       {/* NIFTY index */}
       <section className="mt-10">
         <Reveal>
-          <SectionHeading eyebrow="Live market" title="NIFTY 50 Index" subtitle="India's benchmark of 50 large companies — fully interactive." />
+          <SectionHeading eyebrow="Live market" title="NIFTY 50 Index" subtitle="India's benchmark of 50 large companies." />
           <Card className="overflow-hidden">
             <CardContent className="p-2 sm:p-3">
               <ExpandableWidget
                 title="NIFTY 50 Index"
-                render={(big) => <AdvancedChart symbol={NIFTY_INDEX_TV} height={big ? "100%" : 560} />}
+                render={(big) => <StockChart symbol={NIFTY_INDEX_YF} days={big ? 365 : 180} height={big ? "100%" : 560} />}
               />
             </CardContent>
           </Card>
@@ -80,10 +79,7 @@ export default function DashboardPage() {
                     <CardDescription className="text-xs">{stock.tv}</CardDescription>
                   </CardHeader>
                   <CardContent className="px-2 pb-3">
-                    {/* visual only — the whole card links to the detail page */}
-                    <div className="pointer-events-none">
-                      <MiniSymbolOverview symbol={stock.tv} height={168} />
-                    </div>
+                    <MiniChart symbol={stock.yf} height={120} />
                   </CardContent>
                 </Card>
               </Link>
@@ -92,19 +88,32 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* Market overview */}
+      {/* More movers */}
       <section className="mt-14">
         <Reveal>
-          <SectionHeading eyebrow="By sector" title="Market overview" subtitle="Leaders across banking, IT and autos." />
-          <Card className="overflow-hidden">
-            <CardContent className="p-2 sm:p-3">
-              <ExpandableWidget
-                title="Market overview"
-                render={(big) => <MarketOverview height={big ? "100%" : 520} />}
-              />
-            </CardContent>
-          </Card>
+          <SectionHeading eyebrow="More to explore" title="More NIFTY 50 movers" subtitle="A few more names — tap any to open its full page." />
         </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {NIFTY_50.slice(8, 16).map((stock, i) => (
+            <Reveal key={stock.yf} delay={(i % 4) * 0.06}>
+              <Link href={`/stock/${encodeURIComponent(stock.yf)}`} className="block h-full">
+                <Card className="h-full overflow-hidden transition-shadow hover:shadow-[0_16px_40px_-24px_rgba(0,0,0,0.3)]">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-base">{stock.name}</CardTitle>
+                      <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground">
+                        {stock.sector}
+                      </span>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="px-2 pb-3">
+                    <MiniChart symbol={stock.yf} height={120} />
+                  </CardContent>
+                </Card>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* Predictions teaser */}

@@ -13,6 +13,8 @@ export type Stock = {
 
 // TradingView symbol for the NIFTY 50 index itself.
 export const NIFTY_INDEX_TV = "NSE:NIFTY";
+// Yahoo Finance symbol for the NIFTY 50 index (used by our own charts/history API).
+export const NIFTY_INDEX_YF = "^NSEI";
 
 export const NIFTY_50: Stock[] = [
   { yf: "RELIANCE.NS", tv: "NSE:RELIANCE", name: "Reliance Industries", sector: "Energy" },

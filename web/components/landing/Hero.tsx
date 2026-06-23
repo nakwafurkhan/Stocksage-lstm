@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AdvancedChart from "@/components/widgets/AdvancedChart";
-import { NIFTY_INDEX_TV } from "@/lib/constants";
+import StockChart from "@/components/charts/StockChart";
+import { NIFTY_INDEX_YF } from "@/lib/constants";
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -78,11 +78,11 @@ export default function Hero() {
               <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
               <span className="h-3 w-3 rounded-full bg-[#28c840]" />
               <span className="ml-3 text-xs text-muted-foreground">
-                NIFTY 50 · live
+                NIFTY 50 · last 6 months
               </span>
             </div>
             <div className="p-2">
-              <AdvancedChart symbol={NIFTY_INDEX_TV} height={440} />
+              <StockChart symbol={NIFTY_INDEX_YF} days={130} height={440} />
             </div>
           </div>
         </motion.div>
