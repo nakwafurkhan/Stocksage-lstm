@@ -2,12 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { findStock } from "@/lib/constants";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import AdvancedChart from "@/components/widgets/AdvancedChart";
-import SymbolInfo from "@/components/widgets/SymbolInfo";
-import Financials from "@/components/widgets/Financials";
-import CompanyProfile from "@/components/widgets/CompanyProfile";
-import NewsTimeline from "@/components/widgets/NewsTimeline";
+import { Card, CardContent } from "@/components/ui/card";
+import StockChart from "@/components/charts/StockChart";
+import KeyStats from "@/components/charts/KeyStats";
 import WatchlistButton from "@/components/stocks/WatchlistButton";
 import ForecastCard from "@/components/forecast/ForecastCard";
 import AiPanel from "@/components/insight/AiPanel";
@@ -49,22 +46,22 @@ export default async function StockPage({ params }: Params) {
         <WatchlistButton symbol={stock.yf} />
       </div>
 
-      {/* Quote strip */}
+      {/* Key stats (our data) */}
       <div className="mt-6">
         <Card className="overflow-hidden">
-          <CardContent className="p-2 sm:p-3">
-            <SymbolInfo symbol={stock.tv} />
+          <CardContent className="p-3">
+            <KeyStats symbol={stock.yf} />
           </CardContent>
         </Card>
       </div>
 
-      {/* Chart */}
+      {/* Price chart (our own data) */}
       <section className="mt-6">
         <Card className="overflow-hidden">
           <CardContent className="p-2 sm:p-3">
             <ExpandableWidget
               title={`${stock.name} — price chart`}
-              render={(big) => <AdvancedChart symbol={stock.tv} height={big ? "100%" : 560} />}
+              render={(big) => <StockChart symbol={stock.yf} days={big ? 500 : 180} height={big ? "100%" : 560} />}
             />
           </CardContent>
         </Card>
@@ -86,56 +83,15 @@ export default async function StockPage({ params }: Params) {
         />
       </section>
 
-      {/* Financials + Profile */}
-      <section className="mt-6 grid gap-6 lg:grid-cols-2">
-        <Card className="overflow-hidden">
-          <CardHeader>
-            <CardTitle className="text-lg">Financials</CardTitle>
-          </CardHeader>
-          <CardContent className="p-2 sm:p-3">
-            <ExpandableWidget
-              title={`${stock.name} — financials`}
-              render={(big) => <Financials symbol={stock.tv} height={big ? "100%" : 460} />}
-            />
-          </CardContent>
-        </Card>
-        <Card className="overflow-hidden">
-          <CardHeader>
-            <CardTitle className="text-lg">About</CardTitle>
-          </CardHeader>
-          <CardContent className="p-2 sm:p-3">
-            <ExpandableWidget
-              title={`${stock.name} — about`}
-              render={(big) => <CompanyProfile symbol={stock.tv} height={big ? "100%" : 420} />}
-            />
-          </CardContent>
-        </Card>
-      </section>
-
       {/* AI news summary */}
       <section className="mt-6">
         <AiPanel
           symbol={stock.yf}
           endpoint="/api/news-summary"
-          title="News summary"
+          title="Latest news, summarized"
           description={`Get an AI summary of recent news and developments about ${stock.name}.`}
           cta="Summarize recent news"
         />
-      </section>
-
-      {/* News */}
-      <section className="mt-6">
-        <Card className="overflow-hidden">
-          <CardHeader>
-            <CardTitle className="text-lg">Latest news</CardTitle>
-          </CardHeader>
-          <CardContent className="p-2 sm:p-3">
-            <ExpandableWidget
-              title={`${stock.name} — latest news`}
-              render={(big) => <NewsTimeline symbol={stock.tv} height={big ? "100%" : 480} />}
-            />
-          </CardContent>
-        </Card>
       </section>
     </div>
   );

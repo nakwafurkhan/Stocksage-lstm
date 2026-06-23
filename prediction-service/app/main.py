@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src import config           # noqa: E402
 from src import predict as predictor  # noqa: E402
+from src import data_loader      # noqa: E402
 
 app = FastAPI(
     title="StockSage-NIFTY Prediction Service",
@@ -57,6 +58,33 @@ def tickers():
             for t in config.NIFTY_50
         ],
     }
+
+
+@app.get("/history/{ticker}")
+def history_endpoint(
+    ticker: str,
+    days: int = Query(180, ge=20, le=2500),
+):
+    """Daily OHLC candles for charting (works for any Yahoo symbol, incl. ^NSEI)."""
+    ticker = ticker.upper()
+    try:
+        df = data_loader.load(ticker)
+    except Exception as e:  # noqa: BLE001
+        raise HTTPException(status_code=404, detail=f"No data for {ticker}: {e!r}")
+    tail = df.tail(days)
+    candles = [
+        {
+            "date": d.strftime("%Y-%m-%d"),
+            "open": round(float(o), 2),
+            "high": round(float(h), 2),
+            "low": round(float(l), 2),
+            "close": round(float(c), 2),
+        }
+        for d, o, h, l, c in zip(
+            tail.index, tail["Open"], tail["High"], tail["Low"], tail["Close"]
+        )
+    ]
+    return {"ticker": ticker, "count": len(candles), "candles": candles}
 
 
 @app.get("/predict/{ticker}")

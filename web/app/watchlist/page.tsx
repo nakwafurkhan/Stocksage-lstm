@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Trash2, Loader2, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import MiniSymbolOverview from "@/components/widgets/MiniSymbolOverview";
+import MiniChart from "@/components/charts/MiniChart";
 import { findStock } from "@/lib/constants";
 
 export default function WatchlistPage() {
@@ -57,10 +57,7 @@ export default function WatchlistPage() {
                 </CardHeader>
                 <CardContent className="px-2 pb-3">
                   <Link href={`/stock/${encodeURIComponent(sym)}`} className="block">
-                    {/* visual only — click opens the detail page, not TradingView */}
-                    <div className="pointer-events-none">
-                      <MiniSymbolOverview symbol={stock.tv} height={130} />
-                    </div>
+                    <MiniChart symbol={stock.yf} height={120} />
                   </Link>
                 </CardContent>
               </Card>
