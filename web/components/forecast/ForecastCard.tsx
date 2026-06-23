@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { getForecast, type Forecast } from "@/lib/api";
 import ForecastChart from "./ForecastChart";
+import InfoHint from "@/components/InfoHint";
 
 const HORIZONS = [7, 30, 90];
 
@@ -98,7 +99,12 @@ export default function ForecastCard({ symbol }: { symbol: string }) {
                 icon={up ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
               />
               <Stat
-                label="Model error (MAE)"
+                label={
+                  <>
+                    Model error (MAE){" "}
+                    <InfoHint text="Mean absolute error: on past data the model never saw, its price prediction was off by about this much on average. Lower is better." />
+                  </>
+                }
                 value={data.model_mae_rupees != null ? `±${inr(data.model_mae_rupees)}` : "—"}
               />
             </div>
@@ -117,6 +123,7 @@ export default function ForecastCard({ symbol }: { symbol: string }) {
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="h-3 w-5 rounded-sm" style={{ background: "hsl(var(--primary))", opacity: 0.12 }} /> Confidence band
+                <InfoHint text="The shaded range shows uncertainty — the wider it gets further out, the less sure the model is. The real price won't necessarily stay inside it." />
               </span>
             </div>
 
@@ -134,7 +141,7 @@ function Stat({
   className,
   icon,
 }: {
-  label: string;
+  label: React.ReactNode;
   value: string;
   className?: string;
   icon?: React.ReactNode;

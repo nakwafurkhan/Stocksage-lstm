@@ -7,7 +7,7 @@ const SCRIPT =
   "https://s3.tradingview.com/external-embedding/embed-widget-financials.js";
 
 /** Fundamentals: revenue, earnings, margins, etc. */
-export default function Financials({ symbol }: { symbol: string }) {
+export default function Financials({ symbol, height = 420 }: { symbol: string; height?: number | string }) {
   const config = useMemo(
     () => ({
       symbol,
@@ -21,5 +21,5 @@ export default function Financials({ symbol }: { symbol: string }) {
     }),
     [symbol]
   );
-  return <TradingViewWidget scriptSrc={SCRIPT} config={config} height={420} />;
+  return <TradingViewWidget scriptSrc={SCRIPT} config={config} height={height} />;
 }

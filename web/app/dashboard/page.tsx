@@ -7,6 +7,7 @@ import OnboardingBanner from "@/components/OnboardingBanner";
 import AdvancedChart from "@/components/widgets/AdvancedChart";
 import MiniSymbolOverview from "@/components/widgets/MiniSymbolOverview";
 import MarketOverview from "@/components/widgets/MarketOverview";
+import ExpandableWidget from "@/components/ExpandableWidget";
 import { FEATURED, NIFTY_INDEX_TV } from "@/lib/constants";
 
 export const metadata = {
@@ -50,7 +51,10 @@ export default function DashboardPage() {
           <SectionHeading eyebrow="Live market" title="NIFTY 50 Index" subtitle="India's benchmark of 50 large companies — fully interactive." />
           <Card className="overflow-hidden">
             <CardContent className="p-2 sm:p-3">
-              <AdvancedChart symbol={NIFTY_INDEX_TV} height={500} />
+              <ExpandableWidget
+                title="NIFTY 50 Index"
+                render={(big) => <AdvancedChart symbol={NIFTY_INDEX_TV} height={big ? "100%" : 560} />}
+              />
             </CardContent>
           </Card>
         </Reveal>
@@ -78,7 +82,7 @@ export default function DashboardPage() {
                   <CardContent className="px-2 pb-3">
                     {/* visual only — the whole card links to the detail page */}
                     <div className="pointer-events-none">
-                      <MiniSymbolOverview symbol={stock.tv} height={140} />
+                      <MiniSymbolOverview symbol={stock.tv} height={168} />
                     </div>
                   </CardContent>
                 </Card>
@@ -94,7 +98,10 @@ export default function DashboardPage() {
           <SectionHeading eyebrow="By sector" title="Market overview" subtitle="Leaders across banking, IT and autos." />
           <Card className="overflow-hidden">
             <CardContent className="p-2 sm:p-3">
-              <MarketOverview height={460} />
+              <ExpandableWidget
+                title="Market overview"
+                render={(big) => <MarketOverview height={big ? "100%" : 520} />}
+              />
             </CardContent>
           </Card>
         </Reveal>
