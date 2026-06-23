@@ -43,7 +43,7 @@ export default function MarketOverview({ height = 460 }: { height?: number }) {
           title: "Auto",
           symbols: [
             { s: "NSE:MARUTI", d: "Maruti" },
-            { s: "NSE:TATAMOTORS", d: "Tata Motors" },
+            { s: "NSE:TMPV", d: "Tata Motors (PV)" },
             { s: "NSE:M_M", d: "Mahindra" },
             { s: "NSE:EICHERMOT", d: "Eicher" },
             { s: "NSE:BAJAJ_AUTO", d: "Bajaj Auto" },

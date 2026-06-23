@@ -40,7 +40,7 @@ export const NIFTY_50: Stock[] = [
   { yf: "NTPC.NS", tv: "NSE:NTPC", name: "NTPC", sector: "Power" },
   { yf: "POWERGRID.NS", tv: "NSE:POWERGRID", name: "Power Grid Corp", sector: "Power" },
   { yf: "M&M.NS", tv: "NSE:M_M", name: "Mahindra & Mahindra", sector: "Auto" },
-  { yf: "TATAMOTORS.NS", tv: "NSE:TATAMOTORS", name: "Tata Motors", sector: "Auto" },
+  { yf: "TMPV.NS", tv: "NSE:TMPV", name: "Tata Motors (PV)", sector: "Auto" },
   { yf: "TATASTEEL.NS", tv: "NSE:TATASTEEL", name: "Tata Steel", sector: "Metals" },
   { yf: "JSWSTEEL.NS", tv: "NSE:JSWSTEEL", name: "JSW Steel", sector: "Metals" },
   { yf: "ADANIENT.NS", tv: "NSE:ADANIENT", name: "Adani Enterprises", sector: "Conglomerate" },
