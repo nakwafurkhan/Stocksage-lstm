@@ -11,6 +11,7 @@ import NewsTimeline from "@/components/widgets/NewsTimeline";
 import WatchlistButton from "@/components/stocks/WatchlistButton";
 import ForecastCard from "@/components/forecast/ForecastCard";
 import AiPanel from "@/components/insight/AiPanel";
+import ExpandableWidget from "@/components/ExpandableWidget";
 
 type Params = { params: Promise<{ symbol: string }> };
 
@@ -61,7 +62,10 @@ export default async function StockPage({ params }: Params) {
       <section className="mt-6">
         <Card className="overflow-hidden">
           <CardContent className="p-2 sm:p-3">
-            <AdvancedChart symbol={stock.tv} height={480} />
+            <ExpandableWidget
+              title={`${stock.name} — price chart`}
+              render={(big) => <AdvancedChart symbol={stock.tv} height={big ? "100%" : 560} />}
+            />
           </CardContent>
         </Card>
       </section>
@@ -89,7 +93,10 @@ export default async function StockPage({ params }: Params) {
             <CardTitle className="text-lg">Financials</CardTitle>
           </CardHeader>
           <CardContent className="p-2 sm:p-3">
-            <Financials symbol={stock.tv} />
+            <ExpandableWidget
+              title={`${stock.name} — financials`}
+              render={(big) => <Financials symbol={stock.tv} height={big ? "100%" : 460} />}
+            />
           </CardContent>
         </Card>
         <Card className="overflow-hidden">
@@ -97,7 +104,10 @@ export default async function StockPage({ params }: Params) {
             <CardTitle className="text-lg">About</CardTitle>
           </CardHeader>
           <CardContent className="p-2 sm:p-3">
-            <CompanyProfile symbol={stock.tv} />
+            <ExpandableWidget
+              title={`${stock.name} — about`}
+              render={(big) => <CompanyProfile symbol={stock.tv} height={big ? "100%" : 420} />}
+            />
           </CardContent>
         </Card>
       </section>
@@ -120,7 +130,10 @@ export default async function StockPage({ params }: Params) {
             <CardTitle className="text-lg">Latest news</CardTitle>
           </CardHeader>
           <CardContent className="p-2 sm:p-3">
-            <NewsTimeline symbol={stock.tv} height={460} />
+            <ExpandableWidget
+              title={`${stock.name} — latest news`}
+              render={(big) => <NewsTimeline symbol={stock.tv} height={big ? "100%" : 480} />}
+            />
           </CardContent>
         </Card>
       </section>

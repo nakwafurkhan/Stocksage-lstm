@@ -7,7 +7,7 @@ const SCRIPT =
   "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js";
 
 /** "About this company" profile box. */
-export default function CompanyProfile({ symbol }: { symbol: string }) {
+export default function CompanyProfile({ symbol, height = 360 }: { symbol: string; height?: number | string }) {
   const config = useMemo(
     () => ({
       symbol,
@@ -19,5 +19,5 @@ export default function CompanyProfile({ symbol }: { symbol: string }) {
     }),
     [symbol]
   );
-  return <TradingViewWidget scriptSrc={SCRIPT} config={config} height={360} />;
+  return <TradingViewWidget scriptSrc={SCRIPT} config={config} height={height} />;
 }

@@ -7,7 +7,7 @@ const SCRIPT =
   "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
 
 /** Tabbed snapshot of Indian market groups (banks, IT, autos). */
-export default function MarketOverview({ height = 460 }: { height?: number }) {
+export default function MarketOverview({ height = 460 }: { height?: number | string }) {
   const config = useMemo(
     () => ({
       colorTheme: "light",

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenu";
+import MobileNav from "@/components/MobileNav";
 
 const LINKS = [
   { label: "Stocks", href: "/stocks" },
@@ -29,7 +30,10 @@ export default function Navbar() {
           ))}
         </div>
 
-        <UserMenu />
+        <div className="flex items-center gap-1">
+          <UserMenu />
+          <MobileNav />
+        </div>
       </nav>
     </header>
   );
