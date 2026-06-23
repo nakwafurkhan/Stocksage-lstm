@@ -52,8 +52,7 @@ web/
 │   ├── Navbar.tsx, Footer.tsx
 │   ├── motion/Reveal.tsx           # Framer Motion scroll-reveal
 │   ├── landing/                    # Hero, Features, HowItWorks, CTA
-│   ├── widgets/                    # TradingView: TickerTape, AdvancedChart, …
-│   ├── TradingViewWidget.tsx       # generic widget loader
+│   ├── charts/                     # own-data SVG: CandleChart, Sparkline, StockChart, …
 │   └── ui/                         # button, card
 └── lib/
     ├── constants.ts        # NIFTY 50 list (edit me)
